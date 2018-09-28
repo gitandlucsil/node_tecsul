@@ -25,7 +25,7 @@ module.exports = (sequelize,Sequelize) => {
         }
     });
     
-    Usuario.idPassword = (encodedPassword, senha) => {
+    Usuario.isPassword = (encodedPassword, senha) => {
         return bcrypt.compareSync(senha,encodedPassword);
     }
     return Usuario;

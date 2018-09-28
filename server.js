@@ -18,6 +18,7 @@ app.urlencodedParser = urlencodedParser;
 require('./app/router/cliente.route.js')(app);
 require('./app/router/venda.route.js')(app);
 require('./app/router/usuario.route.js')(app);
+require('./app/router/auth.route.js')(app);
 
 app.listen(8081,()=>{
     console.log("App escutando na porta 8081");
