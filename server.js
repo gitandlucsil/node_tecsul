@@ -5,15 +5,21 @@ const http = require('http');
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
+
+const authorization = require('./app/auth/auth.js');
+const auth = authorization(app);
+app.use(auth.initialize());
+
 this.app = http.createServer(app);
 
-db.sequelize.sync({force: true}).then(() => {
+db.sequelize.sync({force: false}).then(() => {
     console.log('Cria, deleta e resincroniza as tabelas');
 });
 
 //Cria parser para application/x-www-form-urlencoded
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 app.urlencodedParser = urlencodedParser;
+app.auth = auth;
 
 require('./app/router/cliente.route.js')(app);
 require('./app/router/venda.route.js')(app);
